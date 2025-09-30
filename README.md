@@ -1,4 +1,4 @@
-# 🍽️ iHungry OPP SWING GUI
+# 🍽️ iHungry OOP SWING GUI
 
 ![Java](https://img.shields.io/badge/Java-100%25-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
@@ -7,7 +7,7 @@
 
 ---
 
-## 🎉 Welcome to **iHungry OPP SWING GUI**!
+## 🎉 Welcome to **iHungry OOP SWING GUI**!
 
 A vibrant, educational **Java Swing GUI application** designed using robust Object-Oriented Programming principles.  
 Perfect for students, hobbyists, and developers seeking to deepen their Swing and OOP skills.
