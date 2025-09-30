@@ -69,7 +69,7 @@ java -cp bin Main
 ## 🎨 Screenshots
 
 ![Screenshot](resorces/Screenshot%202025-09-30%20220428.png)
-<sub>_Add your GUI screenshot here!_</sub>
+<!-- <sub>_Add your GUI screenshot here!_</sub> -->
 
 ---
 
