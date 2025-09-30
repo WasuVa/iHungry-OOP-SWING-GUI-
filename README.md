@@ -16,7 +16,7 @@ Perfect for students, hobbyists, and developers seeking to deepen their Swing an
 
 ## 📖 Project Purpose
 
-iHungry OPP SWING GUI aims to demonstrate best practices in building desktop applications using Java Swing, emphasizing:
+iHungry OOP SWING GUI aims to demonstrate best practices in building desktop applications using Java Swing, emphasizing:
 
 - Modern Object-Oriented Design
 - Separation of concerns
@@ -50,8 +50,8 @@ iHungry OPP SWING GUI aims to demonstrate best practices in building desktop app
 ### 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/wasudasandaruvan/iHungry-OPP-SWING-GUI-.git
-cd iHungry-OPP-SWING-GUI-
+git clone https://github.com/wasudasandaruvan/iHungry-OOP-SWING-GUI-.git
+cd iHungry-OOP-SWING-GUI-
 ```
 
 ### 2. **Compile & Run**
@@ -76,7 +76,7 @@ java -cp bin Main
 ## 📦 Project Structure
 
 ```plaintext
-iHungry-OPP-SWING-GUI-
+iHungry-OOP-SWING-GUI-
 │
 ├── src/            # Java source files
 ├── bin/            # Compiled classes
