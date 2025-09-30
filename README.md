@@ -119,11 +119,6 @@ iHungry-OOP-SWING-GUI-
 Pull requests, issues, and suggestions are warmly welcome!  
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
