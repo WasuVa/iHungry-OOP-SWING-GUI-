@@ -1,37 +1,39 @@
-
-package main;
+package CustomerPack;
 
 public class Customer {
-    private String oderId;
+    private String orderId;
     private String name;
     private String cusId;
     private int bgrQty;
     private int orderStatus;
-    
-    
-    
-    public Customer(){}
-    
-    public Customer(String oderId,String name,String cusId,int bgrQty,int orderStatus){
-        this.oderId=oderId;
-        this.name=name;
-        this.cusId=cusId;
-        this.bgrQty=bgrQty;
-        this.orderStatus=orderStatus;
+
+    public static final int PREPARING = 0;
+    public static final int CANCELED = 1; 
+    public static final int DELIVERED = 2;
+
+    public Customer() {
+    }
+
+    public Customer(String orderId, String name, String cusId, int bgrQty, int orderStatus) {
+        this.orderId = orderId;
+        this.name = name;
+        this.cusId = cusId;
+        this.bgrQty = bgrQty;
+        this.orderStatus = orderStatus;
     }
 
     /**
-     * @return the oderId
+     * @return the orderId
      */
     public String getOrderId() {
-        return oderId;
+        return orderId;
     }
 
     /**
-     * @param oderId the oderId to set
+     * @param orderId the orderId to set
      */
-    public void setOderId(String oderId) {
-        this.oderId = oderId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     /**
@@ -89,7 +91,4 @@ public class Customer {
     public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
     }
-    
-    
-    
 }
