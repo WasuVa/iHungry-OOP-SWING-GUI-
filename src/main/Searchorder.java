@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.Customer;
+import CustomerPack.CustomerCollection;
+
+
 /**
  *
  * @author USER
  */
 public class Searchorder extends javax.swing.JFrame {
+    
+    private final CustomerCollection customerCollection;
 
-    /**
-     * Creates new form Mainform
-     */
-    public Searchorder() {
+    public Searchorder(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
     }
 
     /**
@@ -68,9 +72,17 @@ public class Searchorder extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setText("Enter OrderID :");
 
+        txtSOid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtSOid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSOidKeyReleased(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel3.setText("Customer ID :");
 
+        txtSOcusId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSOcusId.setEnabled(false);
         txtSOcusId.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
@@ -88,18 +100,22 @@ public class Searchorder extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel4.setText("Name           :");
 
+        txtSOname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSOname.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setText("QTY              :");
 
+        txtSOqty.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSOqty.setEnabled(false);
 
+        txtSOtotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSOtotal.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel6.setText("Total            :");
 
+        txtSOstatus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSOstatus.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -175,7 +191,7 @@ public class Searchorder extends javax.swing.JFrame {
                             .addComponent(txtSOstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(btnSback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))))
         );
@@ -203,13 +219,33 @@ public class Searchorder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSOcusIdActionPerformed
 
     private void btnSbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSbackActionPerformed
-        new MainSearch().setVisible(true);
+        new MainSearch(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSbackActionPerformed
 
     private void txtSOcusIdInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtSOcusIdInputMethodTextChanged
 
     }//GEN-LAST:event_txtSOcusIdInputMethodTextChanged
+
+    private void txtSOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSOidKeyReleased
+        String id=txtSOid.getText();
+        
+        Customer customer=customerCollection.searchOrder(id);
+        
+        txtSOname.setText(customer.getName());
+        txtSOcusId.setText(customer.getOrderId());
+        txtSOqty.setText(""+customer.getBgrQty());
+        txtSOtotal.setText(""+customer.getBgrQty()*Customer.bgrPrice);
+        if (customer.getOrderStatus()==0) {
+            txtSOstatus.setText("PREPARING");
+        }else if (customer.getOrderStatus()==1) {
+            txtSOstatus.setText("CANCELED");
+        }else if (customer.getOrderStatus()==3) {
+            txtSOstatus.setText("DELIVERED");
+        }
+            
+            
+    }//GEN-LAST:event_txtSOidKeyReleased
 
     /**
      * @param args the command line arguments

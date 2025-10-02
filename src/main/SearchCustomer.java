@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.CustomerCollection;
 /**
  *
  * @author USER
  */
 public class SearchCustomer extends javax.swing.JFrame {
-
+    private final CustomerCollection customerCollection; 
     /**
      * Creates new form Mainform
      */
-    public SearchCustomer() {
+    public SearchCustomer(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
     }
 
     /**
@@ -101,10 +103,7 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         tblScdetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Order ID", "Order QTY", "Total"
@@ -180,7 +179,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnScbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScbackActionPerformed
-        new MainSearch().setVisible(true);
+        new MainSearch(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnScbackActionPerformed
 

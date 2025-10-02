@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.CustomerCollection;
 /**
  *
  * @author USER
  */
 public class ProcessingOrders extends javax.swing.JFrame {
-
+    private final CustomerCollection customerCollection;
     /**
      * Creates new form Mainform
      */
-    public ProcessingOrders() {
+    public ProcessingOrders(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
     }
 
     /**
@@ -67,10 +69,7 @@ public class ProcessingOrders extends javax.swing.JFrame {
 
         tblPoders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Order ID", "Customer ID", "Name", "Order QTY", "Total"
@@ -127,7 +126,7 @@ public class ProcessingOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbackActionPerformed
-        new MainviewOrders().setVisible(true);
+        new MainviewOrders(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnProbackActionPerformed
 

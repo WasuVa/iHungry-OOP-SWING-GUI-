@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.CustomerCollection;
 /**
  *
  * @author USER
  */
 public class MainviewOrders extends javax.swing.JFrame {
-
+    private final CustomerCollection customerCollection;
     /**
      * Creates new form Mainform
      */
-    public MainviewOrders() {
+    public MainviewOrders(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
     }
 
     /**
@@ -173,22 +175,22 @@ public class MainviewOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVDOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVDOActionPerformed
-        new DeliveredOrders().setVisible(true);
+        new DeliveredOrders(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVDOActionPerformed
 
     private void btnVbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVbackActionPerformed
-       new Mainform().setVisible(true);
+       new Mainform(customerCollection).setVisible(true);
        dispose();
     }//GEN-LAST:event_btnVbackActionPerformed
 
     private void btnVCOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVCOActionPerformed
-        new CanceledOrders().setVisible(true);
+        new CanceledOrders(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVCOActionPerformed
 
     private void btnVPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVPOActionPerformed
-        new ProcessingOrders().setVisible(true);
+        new ProcessingOrders(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVPOActionPerformed
 

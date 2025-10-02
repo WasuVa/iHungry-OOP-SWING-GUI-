@@ -25,10 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel3" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -62,7 +59,13 @@
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblStatus" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="txtBurgerqty" min="-2" pref="155" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtBurgerqty" min="-2" pref="155" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="btnqtymin" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnqtnplus" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -82,7 +85,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="151" max="32767" attributes="0"/>
+                  <EmptySpace pref="107" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnPlaceoder" max="32767" attributes="0"/>
@@ -92,10 +95,10 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel6" min="-2" pref="105" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblTotal" min="-2" pref="121" max="-2" attributes="0"/>
+                          <Component id="lblTotal" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -149,17 +152,19 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtBurgerqty" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="btnqtnplus" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="btnqtymin" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblStatus" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="lblTotal" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="lblTotal" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -233,13 +238,21 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBurgerqty">
           <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBurgerqtyActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBurgerqtyKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCusId">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCusIdActionPerformed"/>
           </Events>
@@ -308,11 +321,15 @@
         <Component class="javax.swing.JLabel" name="lblStatus">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="16" style="1"/>
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="33" type="rgb"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lblStatusKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lblStatusKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPOrder">
@@ -331,11 +348,41 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCusname">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCusnameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTotal">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="0" red="cc" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="LKR 0.0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnqtnplus">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&gt;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnqtnplusKeyReleased"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnqtymin">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&lt;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnqtyminKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

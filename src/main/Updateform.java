@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.CustomerCollection;
 /**
  *
  * @author USER
  */
 public class Updateform extends javax.swing.JFrame {
-
+private final CustomerCollection customerCollection;
     /**
      * Creates new form Mainform
      */
-    public Updateform() {
+    public Updateform(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
     }
 
     /**
@@ -223,7 +225,7 @@ public class Updateform extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUoderActionPerformed
 
     private void btnUbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbackActionPerformed
-       new Mainform().setVisible(true);
+       new Mainform(customerCollection).setVisible(true);
        dispose();
     }//GEN-LAST:event_btnUbackActionPerformed
 

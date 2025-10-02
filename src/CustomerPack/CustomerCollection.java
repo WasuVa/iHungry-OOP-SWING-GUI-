@@ -1,7 +1,5 @@
 package CustomerPack;
 
-import main.*;
-
 public class CustomerCollection {
     private Customer[] customerArray = new Customer[0];
 
@@ -35,6 +33,15 @@ public class CustomerCollection {
             }
         }
         return -1;
+    }
+    
+    public Customer searchOrder(String oderId){
+        for (Customer customer : customerArray) {
+            if (customer.getOrderId().equalsIgnoreCase(oderId)) {
+                return customer;
+            }
+        }
+        return null;
     }
 
     public String genOrderId() {

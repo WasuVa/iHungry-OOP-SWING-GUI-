@@ -1,6 +1,7 @@
 package CustomerPack;
 
 public class Customer {
+    public static final int bgrPrice=500;
     private String orderId;
     private String name;
     private String cusId;
@@ -39,7 +40,7 @@ public class Customer {
     /**
      * @return the name
      */
-    public String getName() {
+    public String getName(){
         return name;
     }
 

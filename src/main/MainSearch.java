@@ -3,18 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-/**
- *
- * @author USER
- */
+import CustomerPack.CustomerCollection;
+
 public class MainSearch extends javax.swing.JFrame {
+    private final CustomerCollection customerCollection; 
 
     /**
      * Creates new form Mainform
      */
-    public MainSearch() {
+    public MainSearch(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
+        
     }
 
     /**
@@ -127,7 +128,7 @@ public class MainSearch extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,21 +174,21 @@ public class MainSearch extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSPbestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPbestActionPerformed
-        new SearchBestCustomer().setVisible(true);
+        new SearchBestCustomer(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSPbestActionPerformed
 
     private void btnSPbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPbackActionPerformed
-       new Mainform().setVisible(true);
+       new Mainform(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSPbackActionPerformed
 
     private void btnSPcdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPcdetailsActionPerformed
-        new SearchCustomer().setVisible(true);
+        new SearchCustomer(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnSPcdetailsActionPerformed
 
     private void btnSPodetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPodetailsActionPerformed
-        new Searchorder().setVisible(true);
+        new Searchorder(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSPodetailsActionPerformed
 

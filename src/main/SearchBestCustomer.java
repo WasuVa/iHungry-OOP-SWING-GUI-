@@ -3,18 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.CustomerCollection;
 /**
  *
  * @author USER
  */
 public class SearchBestCustomer extends javax.swing.JFrame {
+    private final CustomerCollection customerCollection;
 
     /**
      * Creates new form Mainform
      */
-    public SearchBestCustomer() {
+    public SearchBestCustomer(CustomerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection;
     }
 
     /**
@@ -124,7 +127,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSbackActionPerformed
-        new MainSearch().setVisible(true);
+        new MainSearch(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSbackActionPerformed
 

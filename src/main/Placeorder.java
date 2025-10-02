@@ -53,6 +53,8 @@ public class Placeorder extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtCusname = new javax.swing.JTextField();
         lblTotal = new javax.swing.JLabel();
+        btnqtnplus = new javax.swing.JButton();
+        btnqtymin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Window");
@@ -90,13 +92,19 @@ public class Placeorder extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setText("Oder Status     :");
 
-        txtBurgerqty.setText("1");
+        txtBurgerqty.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtBurgerqty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBurgerqtyActionPerformed(evt);
             }
         });
+        txtBurgerqty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBurgerqtyKeyReleased(evt);
+            }
+        });
 
+        txtCusId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCusId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCusIdActionPerformed(evt);
@@ -136,10 +144,14 @@ public class Placeorder extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("NET Total :");
 
-        lblStatus.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblStatus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblStatus.setForeground(new java.awt.Color(51, 255, 0));
         lblStatus.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 lblStatusKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblStatusKeyReleased(evt);
             }
         });
 
@@ -148,9 +160,28 @@ public class Placeorder extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel8.setText("Customer Name :");
 
+        txtCusname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCusname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCusnameActionPerformed(evt);
+            }
+        });
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(204, 0, 51));
+        lblTotal.setText("LKR 0.0");
+
+        btnqtnplus.setText(">");
+        btnqtnplus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnqtnplusKeyReleased(evt);
+            }
+        });
+
+        btnqtymin.setText("<");
+        btnqtymin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnqtyminKeyReleased(evt);
             }
         });
 
@@ -170,7 +201,12 @@ public class Placeorder extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBurgerqty, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtBurgerqty, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(btnqtymin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnqtnplus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +219,7 @@ public class Placeorder extends javax.swing.JFrame {
                             .addComponent(txtCusId)
                             .addComponent(lblPOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCusname, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnPlaceoder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,8 +228,8 @@ public class Placeorder extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,23 +271,23 @@ public class Placeorder extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBurgerqty, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnqtnplus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnqtymin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                            .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,30 +321,31 @@ public class Placeorder extends javax.swing.JFrame {
                     lblPOrder.setText(customerCollection.genOrderId());
                     txtCusId.setText("0");
                     txtCusname.setText("");
-                    txtBurgerqty.setText("1");
+                    txtBurgerqty.setText("");
+                    lblStatus.setText("");
                 }else{
                     JOptionPane.showMessageDialog(this, "Somthing Wrong,Please check your inputs!");
                     txtCusId.setText("0");
                     txtCusname.setText("");
-                    txtBurgerqty.setText("1");
+                    txtBurgerqty.setText("");
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "Customer Name is incorrect,Please inpute correct name");
                 txtCusId.setText("0");
                 txtCusname.setText("");
-                txtBurgerqty.setText("1");
+                txtBurgerqty.setText("");
             }
         }else{
             JOptionPane.showMessageDialog(this, "Customer ID is incorrect,Please inpute correct ID");
             txtCusId.setText("0");
             txtCusname.setText("");
-            txtBurgerqty.setText("1");       
+            txtBurgerqty.setText("");       
         }  
     }//GEN-LAST:event_btnPlaceoderActionPerformed
 
     private void btnPbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPbackActionPerformed
         dispose();
-        new Mainform().setVisible(true);
+        new Mainform(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnPbackActionPerformed
 
     private void txtCusnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCusnameActionPerformed
@@ -318,12 +355,34 @@ public class Placeorder extends javax.swing.JFrame {
     private void btnPcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcancelActionPerformed
         txtCusId.setText("0");
         txtCusname.setText("");
-        txtBurgerqty.setText("1");  
+        txtBurgerqty.setText("");  
     }//GEN-LAST:event_btnPcancelActionPerformed
 
     private void lblStatusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblStatusKeyPressed
 
     }//GEN-LAST:event_lblStatusKeyPressed
+
+    private void lblStatusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblStatusKeyReleased
+        
+    }//GEN-LAST:event_lblStatusKeyReleased
+
+    private void txtBurgerqtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBurgerqtyKeyReleased
+        String qty=txtBurgerqty.getText();
+        if (qty.isEmpty()) {
+            lblTotal.setText("LKR 500.0");
+            txtBurgerqty.setText("1");
+            return;
+        }
+        lblTotal.setText("LKR "+(double)Customer.bgrPrice*Integer.parseInt(qty));
+    }//GEN-LAST:event_txtBurgerqtyKeyReleased
+
+    private void btnqtyminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnqtyminKeyReleased
+        
+    }//GEN-LAST:event_btnqtyminKeyReleased
+
+    private void btnqtnplusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnqtnplusKeyReleased
+           
+    }//GEN-LAST:event_btnqtnplusKeyReleased
 
     /**
      * @param args the command line arguments
@@ -333,6 +392,8 @@ public class Placeorder extends javax.swing.JFrame {
     private javax.swing.JButton btnPback;
     private javax.swing.JButton btnPcancel;
     private javax.swing.JButton btnPlaceoder;
+    private javax.swing.JButton btnqtnplus;
+    private javax.swing.JButton btnqtymin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

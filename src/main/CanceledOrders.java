@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.CustomerCollection;
 /**
  *
  * @author USER
  */
 public class CanceledOrders extends javax.swing.JFrame {
-
+private final CustomerCollection customerCollection;
     /**
      * Creates new form Mainform
      */
-    public CanceledOrders() {
+    public CanceledOrders(CustomerCollection customerCollection1) {
         initComponents();
         setLocationRelativeTo(null);
+        this.customerCollection=customerCollection1;
     }
 
     /**
@@ -67,10 +69,7 @@ public class CanceledOrders extends javax.swing.JFrame {
 
         tblCoders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Order ID", "Customer ID", "Name", "Order QTY", "Total"
@@ -119,7 +118,7 @@ public class CanceledOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCanbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanbackActionPerformed
-        new MainviewOrders().setVisible(true);
+        new MainviewOrders(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCanbackActionPerformed
 
