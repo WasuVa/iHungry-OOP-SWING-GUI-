@@ -211,18 +211,27 @@ public class SearchCustomer extends javax.swing.JFrame {
 
     private void txtScusIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtScusIdKeyReleased
         String CusId=txtScusId.getText();
-        if (txtScusId.getText().length()==10) {
-            
-            DefaultTableModel dtm=(DefaultTableModel) tblScdetails.getModel();
-            dtm.setRowCount(0);
-            Customer[] customerArray=customerCollection.toArray();
-            for (Customer customer : customerArray) {
-                Object[] rowData={customer.getOrderId(),customer.getBgrQty(),customer.getBgrQty()*customer.bgrPrice};
-                dtm.addRow(rowData);
+        Customer order=customerCollection.searchCustomer(CusId);
+        if(!txtScusId.getText().isEmpty()){
+            if (order==null & CusId.length()==10) {
+                JOptionPane.showMessageDialog(this, "This customer ID not exists,Try again");
+                txtScusId.setText("");
             }
-        }else if (txtScusId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "This customer ID not exists,Try again");
-            lblName.setText("");
+            if (txtScusId.getText().length()==10) {
+                Customer[] customerArray=customerCollection.toArray();
+                DefaultTableModel dtm=(DefaultTableModel) tblScdetails.getModel();
+                dtm.setRowCount(0);
+                for (int i = 0; i < customerArray.length; i++) {
+                    if (CusId.equals(customerArray[i].getCusId())) {
+                        lblName.setText(customerArray[i].getName());
+                        Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getBgrQty(), (double) customerArray[i].getBgrQty()* Customer.bgrPrice};
+                        dtm.addRow(rowData);
+                    }
+                }
+            }else if (txtScusId.getText()==null) {
+                JOptionPane.showMessageDialog(this, "This customer ID not exists,Try again");
+                lblName.setText("");
+            }
         }
     }//GEN-LAST:event_txtScusIdKeyReleased
 

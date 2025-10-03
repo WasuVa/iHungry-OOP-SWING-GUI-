@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.Customer;
 import CustomerPack.CustomerCollection;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -18,6 +20,55 @@ public class SearchBestCustomer extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
+        loadBestCustomer();
+    }
+    
+    public void loadBestCustomer(){
+        Customer[] customer=customerCollection.toArray();
+        Customer[] bestCustomers = new Customer[0];
+
+        for (int i = 0; i < customer.length; i++) {
+            if (!customerCollection.searchDuplicateCustomers(bestCustomers, customer[i].getCusId())) {
+                Customer[] temp = new Customer[bestCustomers.length + 1];
+                for (int j = 0; j < bestCustomers.length; j++) {
+                    temp[j] = bestCustomers[j];
+                }
+                bestCustomers = temp;
+                bestCustomers[bestCustomers.length - 1] = 
+                        new Customer(customer[i].getOrderId(), 
+                                customer[i].getName(), 
+                                customer[i].getCusId(), 
+                                customer[i].getBgrQty(), 
+                                customer[i].getOrderStatus());
+            }
+        }
+
+        for (int i = 0; i < bestCustomers.length; i++) {
+            int bgrQty = 0;
+            for (int j = 0; j < customer.length; j++) {
+                if (customer[j].getCusId().equalsIgnoreCase(bestCustomers[i].getCusId())) {
+                    bgrQty += customer[j].getBgrQty();
+                }
+            }
+            bestCustomers[i].setBgrQty(bgrQty);
+        }
+
+        for (int i = 0; i < bestCustomers.length; i++) {
+            for (int j = 0; j < bestCustomers.length - 1; j++) {
+                if (bestCustomers[j].getBgrQty()< bestCustomers[j + 1].getBgrQty()) {
+                    Customer temp = bestCustomers[j];
+                    bestCustomers[j] = bestCustomers[j + 1];
+                    bestCustomers[j + 1] = temp;
+                }
+            }
+        }
+
+        DefaultTableModel dtm = (DefaultTableModel) tblSBcustomers.getModel();
+        dtm.setRowCount(0);
+        for (Customer burger : bestCustomers) {
+            Object[] rowData = {burger.getCusId(), burger.getName(), burger.getBgrQty()*Customer.bgrPrice};
+            dtm.addRow(rowData);
+        }
     }
 
     /**

@@ -235,7 +235,7 @@ public class Searchorder extends javax.swing.JFrame {
                 lblStatus.setText("PREPARING");
             }else if (customer.getOrderStatus()==1) {
                 lblStatus.setText("CANCELED");
-            }else if (customer.getOrderStatus()==3) {
+            }else if (customer.getOrderStatus()==2) {
                 lblStatus.setText("DELIVERED");
             }
         }

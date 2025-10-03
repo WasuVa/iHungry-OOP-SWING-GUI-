@@ -4,6 +4,8 @@
  */
 package main;
 import CustomerPack.CustomerCollection;
+import CustomerPack.Customer;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -17,6 +19,19 @@ private final CustomerCollection customerCollection;
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
+        loadDeliveredData();
+    }
+    private void loadDeliveredData(){
+        Customer[] customerArray=customerCollection.toArray();
+        int Status=2;
+        DefaultTableModel dtm=(DefaultTableModel) tblDoders.getModel();
+        dtm.setRowCount(0);
+        for (int i = 0; i < customerArray.length; i++) {
+            if (Status==(customerArray[i].getOrderStatus())) {
+                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Customer.bgrPrice};
+                dtm.addRow(rowData);
+            }
+        }
     }
 
     /**

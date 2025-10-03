@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import CustomerPack.Customer;
 import CustomerPack.CustomerCollection;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -17,8 +19,20 @@ private final CustomerCollection customerCollection;
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection1;
+        loadCanceledData();
     }
-
+    private void loadCanceledData(){
+        Customer[] customerArray=customerCollection.toArray();
+        int Status=1;
+        DefaultTableModel dtm=(DefaultTableModel) tblCoders.getModel();
+        dtm.setRowCount(0);
+        for (int i = 0; i < customerArray.length; i++) {
+            if (Status==(customerArray[i].getOrderStatus())) {
+                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Customer.bgrPrice};
+                dtm.addRow(rowData);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,7 +88,15 @@ private final CustomerCollection customerCollection;
             new String [] {
                 "Order ID", "Customer ID", "Name", "Order QTY", "Total"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblCoders);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

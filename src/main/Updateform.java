@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class Updateform extends javax.swing.JFrame {
 private final CustomerCollection customerCollection;
+private Customer customer;
     /**
      * Creates new form Mainform
      */
@@ -134,6 +135,11 @@ private final CustomerCollection customerCollection;
         jLabel8.setText("Total(LKR)");
 
         Uqbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PREPARING", "CANCELE", "DELIVERED" }));
+        Uqbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UqboxActionPerformed(evt);
+            }
+        });
 
         lblCusId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
@@ -245,24 +251,18 @@ private final CustomerCollection customerCollection;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUoderActionPerformed
-        String id=txtUOid.getText();
-        String name=lblCusName.getText();
-        String CusId=lblCusId.getText();
-        
-        int Status=Uqbox.getSelectedIndex();
-        int Qty=Integer.parseInt(txtUoderqty.getText());
-        Customer customer = new Customer(id,name,CusId,Qty,Status);
-        boolean isUpdate=customerCollection.updateCustomer(customer);
-        if(isUpdate){
-            JOptionPane.showMessageDialog(this, "Updated.");
-            txtUOid.setText("");
-            Uqbox.setSelectedIndex(0);
-            lblCusId.setText("");
-            lblCusName.setText("");
-            txtUoderqty.setText("");
-            lblTotal.setText("0.0");
-        }else{
-            JOptionPane.showMessageDialog(this, "Update Fail.");
+        int qty = Integer.parseInt(txtUoderqty.getText());
+        int status = Uqbox.getSelectedIndex();
+
+        if (qty < 1) {
+            JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
+        } else {
+            customer.setBgrQty(qty);
+            customer.setOrderStatus(status);
+            if(status==Customer.CANCELED){
+                customer.setBgrQty(0);
+            }
+            JOptionPane.showMessageDialog(this, "Order updated successfully...");
         }
     }//GEN-LAST:event_btnUoderActionPerformed
 
@@ -272,34 +272,48 @@ private final CustomerCollection customerCollection;
     }//GEN-LAST:event_btnUbackActionPerformed
 
     private void txtUOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyReleased
-        String id=txtUOid.getText();
-        Customer customer=customerCollection.searchOrder(id);
-        if(customer==null & id.length()==5){
-            JOptionPane.showMessageDialog(this, "Customer not found..");
-        }else if (customer.getOrderStatus()==0) {
+
+        String orderId = txtUOid.getText();
+
+        if (orderId.isEmpty()) {
             Uqbox.setSelectedIndex(0);
-            lblCusId.setText(customer.getCusId());
-            lblCusName.setText(customer.getName());
-            txtUoderqty.setText(""+customer.getBgrQty());
-            lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
-        }else if (customer.getOrderStatus()==1) {
-            Uqbox.setSelectedIndex(1);
-            Uqbox.setEnabled(false);
-            lblCusId.setText(customer.getCusId());
-            lblCusName.setText(customer.getName());
-            txtUoderqty.setText(""+customer.getBgrQty());
-            txtUoderqty.setEditable(false);
-            lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
-        }else if (customer.getOrderStatus()==2) {
-            Uqbox.setSelectedIndex(2);
-            Uqbox.setEnabled(false);
-            lblCusId.setText(customer.getCusId());
-            lblCusName.setText(customer.getName());
-            txtUoderqty.setText(""+customer.getBgrQty());
-            txtUoderqty.setEditable(false);
-            lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
+            lblCusId.setText("");
+            lblCusName.setText("");
+            txtUoderqty.setText("");
+            lblTotal.setText("");
+            return;
         }
+
+        this.customer = customerCollection.searchOrder(orderId);
+
         
+        
+        if (this.customer == null) {
+            Uqbox.setSelectedIndex(0);
+            lblCusId.setText("");
+            lblCusName.setText("");
+            txtUoderqty.setText("");
+            lblTotal.setText("");
+            Uqbox.setEnabled(true);
+            txtUoderqty.setEnabled(true);
+            return;
+        }
+
+        if (this.customer.getOrderStatus() == Customer.CANCELED) {
+            JOptionPane.showMessageDialog(this, "This oder is canceled");
+            Uqbox.setEnabled(false);
+            txtUoderqty.setEnabled(false);
+        } else if (this.customer.getOrderStatus() == Customer.DELIVERED) {
+            JOptionPane.showMessageDialog(this, "This oder is Deliverde");
+            Uqbox.setEnabled(false);
+            txtUoderqty.setEnabled(false);
+        }
+
+        Uqbox.setSelectedIndex(customer.getOrderStatus());
+        lblCusId.setText(customer.getCusId());
+        lblCusName.setText(customer.getName());
+        txtUoderqty.setText(String.valueOf(customer.getBgrQty()));
+        lblTotal.setText("LKR " + String.valueOf((double) customer.getBgrQty()* customer.bgrPrice));
     }//GEN-LAST:event_txtUOidKeyReleased
 
     private void txtUOidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyTyped
@@ -313,6 +327,10 @@ private final CustomerCollection customerCollection;
     private void txtUoderqtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUoderqtyKeyReleased
         lblTotal.setText(""+Integer.parseInt(txtUoderqty.getText())*Customer.bgrPrice);
     }//GEN-LAST:event_txtUoderqtyKeyReleased
+
+    private void UqboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UqboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UqboxActionPerformed
 
     /**
      * @param args the command line arguments

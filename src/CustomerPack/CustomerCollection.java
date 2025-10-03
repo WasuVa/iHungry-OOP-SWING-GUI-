@@ -1,8 +1,15 @@
 package CustomerPack;
 
 public class CustomerCollection {
-    private static Customer[] customerArray = new Customer[0];
-
+    private Customer[] customerArray=new Customer[]{
+        new Customer("B0001","wasuda1","0123456789",10,0),
+        new Customer("B0002","wasuda2","0987654321",8,1),
+        new Customer("B0003","wasuda3","0918273645",15,2),
+        new Customer("B0004","wasuda1","0123456789",15,2),
+        new Customer("B0005","wasuda2","0987654321",5,1),
+        new Customer("B0006","wasuda2","0987654321",10,0)
+    };
+    
     public void extendsCustomerArray() {
         Customer[] tempCustomerArray = new Customer[customerArray.length + 1];
         for (int i = 0; i < customerArray.length; i++) {
@@ -52,13 +59,22 @@ public class CustomerCollection {
         return null;
     }
     
+    public boolean searchDuplicateCustomers(Customer[] customerArr,String cusId){
+        for (int i = 0; i < customerArr.length; i++) {
+            if (customerArr[i].getCusId().equalsIgnoreCase(cusId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public boolean updateCustomer(Customer customer){
         int index=indexOf(customer);
         customerArray[index]=customer;
         return true;
     }
 
-    public static Customer[] getAllCustomers(){
+    public Customer[] getAllCustomers(){
         return customerArray;
     }
     
