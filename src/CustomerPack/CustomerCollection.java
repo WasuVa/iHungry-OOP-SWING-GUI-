@@ -1,7 +1,7 @@
 package CustomerPack;
 
 public class CustomerCollection {
-    private Customer[] customerArray = new Customer[0];
+    private static Customer[] customerArray = new Customer[0];
 
     public void extendsCustomerArray() {
         Customer[] tempCustomerArray = new Customer[customerArray.length + 1];
@@ -10,7 +10,15 @@ public class CustomerCollection {
         }
         customerArray = tempCustomerArray;
     }
-
+    
+    public Customer[] toArray() {
+        Customer[] tempCustomerArray = new Customer[customerArray.length];
+        for (int i = 0; i < customerArray.length; i++) {
+            tempCustomerArray[i] = customerArray[i];
+        }
+        return tempCustomerArray;
+    }
+    
     public boolean addCustomer(Customer customer) {
         extendsCustomerArray();
         customerArray[customerArray.length - 1] = customer;
@@ -50,6 +58,10 @@ public class CustomerCollection {
         return true;
     }
 
+    public static Customer[] getAllCustomers(){
+        return customerArray;
+    }
+    
     public String genOrderId() {
         if (customerArray.length <= 0) {
             return "B0001";

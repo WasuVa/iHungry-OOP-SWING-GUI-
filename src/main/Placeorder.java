@@ -367,7 +367,8 @@ public class Placeorder extends javax.swing.JFrame {
     private void btnPcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcancelActionPerformed
         txtCusId.setText("0");
         txtCusname.setText("");
-        txtBurgerqty.setText("");  
+        txtBurgerqty.setText("1");
+        lblTotal.setText("LKR 0.0");
     }//GEN-LAST:event_btnPcancelActionPerformed
 
     private void lblStatusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblStatusKeyPressed

@@ -174,22 +174,23 @@ public class MainSearch extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSPbestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPbestActionPerformed
+        this.dispose();
         new SearchBestCustomer(customerCollection).setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnSPbestActionPerformed
 
     private void btnSPbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPbackActionPerformed
-       new Mainform(customerCollection).setVisible(true);
-        dispose();
+        this.dispose();
+        new Mainform(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnSPbackActionPerformed
 
     private void btnSPcdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPcdetailsActionPerformed
+        this.dispose();
         new SearchCustomer(customerCollection).setVisible(true);
     }//GEN-LAST:event_btnSPcdetailsActionPerformed
 
     private void btnSPodetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPodetailsActionPerformed
+        this.dispose();
         new Searchorder(customerCollection).setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnSPodetailsActionPerformed
 
 
