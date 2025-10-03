@@ -152,8 +152,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtBurgerqty" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                              <Component id="btnqtnplus" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="btnqtymin" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="btnqtnplus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -241,6 +241,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBurgerqtyActionPerformed"/>
@@ -365,7 +366,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="cc" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="LKR 0.0"/>
+            <Property name="text" type="java.lang.String" value="LKR 500.0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnqtnplus">
@@ -373,6 +374,7 @@
             <Property name="text" type="java.lang.String" value="&gt;"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnqtnplusMouseClicked"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnqtnplusKeyReleased"/>
           </Events>
         </Component>
@@ -381,6 +383,7 @@
             <Property name="text" type="java.lang.String" value="&lt;"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnqtyminMouseClicked"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnqtyminKeyReleased"/>
           </Events>
         </Component>

@@ -93,6 +93,7 @@ public class Placeorder extends javax.swing.JFrame {
         jLabel5.setText("Oder Status     :");
 
         txtBurgerqty.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtBurgerqty.setText("1");
         txtBurgerqty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBurgerqtyActionPerformed(evt);
@@ -169,9 +170,14 @@ public class Placeorder extends javax.swing.JFrame {
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setForeground(new java.awt.Color(204, 0, 51));
-        lblTotal.setText("LKR 0.0");
+        lblTotal.setText("LKR 500.0");
 
         btnqtnplus.setText(">");
+        btnqtnplus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnqtnplusMouseClicked(evt);
+            }
+        });
         btnqtnplus.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 btnqtnplusKeyReleased(evt);
@@ -179,6 +185,11 @@ public class Placeorder extends javax.swing.JFrame {
         });
 
         btnqtymin.setText("<");
+        btnqtymin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnqtyminMouseClicked(evt);
+            }
+        });
         btnqtymin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 btnqtyminKeyReleased(evt);
@@ -272,8 +283,8 @@ public class Placeorder extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBurgerqty, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnqtnplus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnqtymin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnqtymin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnqtnplus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,8 +332,9 @@ public class Placeorder extends javax.swing.JFrame {
                     lblPOrder.setText(customerCollection.genOrderId());
                     txtCusId.setText("0");
                     txtCusname.setText("");
-                    txtBurgerqty.setText("");
+                    txtBurgerqty.setText("1");
                     lblStatus.setText("");
+                    lblTotal.setText("LKR 500.0");
                 }else{
                     JOptionPane.showMessageDialog(this, "Somthing Wrong,Please check your inputs!");
                     txtCusId.setText("0");
@@ -383,6 +395,29 @@ public class Placeorder extends javax.swing.JFrame {
     private void btnqtnplusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnqtnplusKeyReleased
            
     }//GEN-LAST:event_btnqtnplusKeyReleased
+
+    private void btnqtyminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnqtyminMouseClicked
+        String qty=txtBurgerqty.getText();
+        int minQty=Integer.parseInt(qty);
+        if (minQty>=1) {
+            txtBurgerqty.setText(""+(minQty-1));
+            lblTotal.setText("LKR "+(double)Customer.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
+            
+        }else if (minQty==0) {
+            lblTotal.setText("LKR 0.0");
+        }
+    }//GEN-LAST:event_btnqtyminMouseClicked
+
+    private void btnqtnplusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnqtnplusMouseClicked
+        String qty=txtBurgerqty.getText();
+        int minQty=Integer.parseInt(qty);
+        if (minQty>=0) {
+            txtBurgerqty.setText(""+(minQty+1));
+            lblTotal.setText("LKR "+(double)Customer.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
+        }else if (qty.isEmpty()) {
+            txtBurgerqty.setText("1");
+        }
+    }//GEN-LAST:event_btnqtnplusMouseClicked
 
     /**
      * @param args the command line arguments

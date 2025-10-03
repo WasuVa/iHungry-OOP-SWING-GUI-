@@ -5,6 +5,7 @@
 package main;
 import CustomerPack.Customer;
 import CustomerPack.CustomerCollection;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -36,16 +37,16 @@ public class Searchorder extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtSOid = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtSOcusId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtSOname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtSOqty = new javax.swing.JTextField();
-        txtSOtotal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtSOstatus = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnSback = new javax.swing.JButton();
+        lblCusId = new javax.swing.JLabel();
+        lblCusname = new javax.swing.JLabel();
+        lblQty = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Window");
@@ -62,7 +63,9 @@ public class Searchorder extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,41 +85,14 @@ public class Searchorder extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel3.setText("Customer ID :");
 
-        txtSOcusId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtSOcusId.setEnabled(false);
-        txtSOcusId.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                txtSOcusIdInputMethodTextChanged(evt);
-            }
-        });
-        txtSOcusId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSOcusIdActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel4.setText("Name           :");
-
-        txtSOname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtSOname.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setText("QTY              :");
 
-        txtSOqty.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtSOqty.setEnabled(false);
-
-        txtSOtotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtSOtotal.setEnabled(false);
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel6.setText("Total            :");
-
-        txtSOstatus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtSOstatus.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel7.setText("Oder Status  :");
@@ -131,6 +107,16 @@ public class Searchorder extends javax.swing.JFrame {
             }
         });
 
+        lblCusId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblCusname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblQty.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblStatus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -141,24 +127,31 @@ public class Searchorder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSOid, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSOname, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSOqty, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSOtotal, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSOstatus, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSOcusId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSback, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCusId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCusname, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblQty, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(483, 483, 483))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSback, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,33 +160,29 @@ public class Searchorder extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSOid, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSOcusId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCusId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSOname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCusname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSOqty, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblQty, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSOtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSOstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(btnSback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))))
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,7 +190,7 @@ public class Searchorder extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,37 +203,42 @@ public class Searchorder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSOcusIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSOcusIdActionPerformed
-        
-    }//GEN-LAST:event_txtSOcusIdActionPerformed
-
     private void btnSbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSbackActionPerformed
         new MainSearch(customerCollection).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSbackActionPerformed
 
-    private void txtSOcusIdInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtSOcusIdInputMethodTextChanged
-
-    }//GEN-LAST:event_txtSOcusIdInputMethodTextChanged
-
     private void txtSOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSOidKeyReleased
         String id=txtSOid.getText();
-        
         Customer customer=customerCollection.searchOrder(id);
-        
-        txtSOname.setText(customer.getName());
-        txtSOcusId.setText(customer.getOrderId());
-        txtSOqty.setText(""+customer.getBgrQty());
-        txtSOtotal.setText(""+customer.getBgrQty()*Customer.bgrPrice);
-        if (customer.getOrderStatus()==0) {
-            txtSOstatus.setText("PREPARING");
-        }else if (customer.getOrderStatus()==1) {
-            txtSOstatus.setText("CANCELED");
-        }else if (customer.getOrderStatus()==3) {
-            txtSOstatus.setText("DELIVERED");
+        if (txtSOid.getText().isEmpty() || txtSOid.getText().length()==4) {
+            lblCusId.setText("");
+;           lblCusname.setText("");
+            lblQty.setText("");
+            lblStatus.setText("");
+            lblTotal.setText("");
         }
-            
-            
+        if(id.length()==5 & customer==null){
+            JOptionPane.showMessageDialog(this, "This Oder is not exists,Try again");
+            txtSOid.setText("");
+            lblCusId.setText("");
+            lblCusname.setText("");
+            lblQty.setText("");
+            lblStatus.setText("");
+            lblTotal.setText("");
+        }else{
+            lblCusname.setText(customer.getName());
+            lblCusId.setText(customer.getCusId());
+            lblQty.setText(""+customer.getBgrQty());
+            lblTotal.setText(""+customer.getBgrQty()*Customer.bgrPrice);
+            if (customer.getOrderStatus()==0) {
+                lblStatus.setText("PREPARING");
+            }else if (customer.getOrderStatus()==1) {
+                lblStatus.setText("CANCELED");
+            }else if (customer.getOrderStatus()==3) {
+                lblStatus.setText("DELIVERED");
+            }
+        }
     }//GEN-LAST:event_txtSOidKeyReleased
 
     /**
@@ -262,11 +256,11 @@ public class Searchorder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtSOcusId;
+    private javax.swing.JLabel lblCusId;
+    private javax.swing.JLabel lblCusname;
+    private javax.swing.JLabel lblQty;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JTextField txtSOid;
-    private javax.swing.JTextField txtSOname;
-    private javax.swing.JTextField txtSOqty;
-    private javax.swing.JTextField txtSOstatus;
-    private javax.swing.JTextField txtSOtotal;
     // End of variables declaration//GEN-END:variables
 }
