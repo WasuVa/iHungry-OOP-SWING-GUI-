@@ -43,6 +43,12 @@ public class CustomerCollection {
         }
         return null;
     }
+    
+    public boolean updateCustomer(Customer customer){
+        int index=indexOf(customer);
+        customerArray[index]=customer;
+        return true;
+    }
 
     public String genOrderId() {
         if (customerArray.length <= 0) {

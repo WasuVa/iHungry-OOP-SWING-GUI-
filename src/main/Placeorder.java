@@ -323,10 +323,10 @@ public class Placeorder extends javax.swing.JFrame {
         int status=0;
         int bgrQty=Integer.parseInt(txtBurgerqty.getText());
         if (cusId.length()==10) {
-            Customer customer=new Customer(orderId,name,cusId,bgrQty,status);
-            boolean isAdded=customerCollection.addCustomer(customer);
             if(name.length()>0){
                 lblStatus.setText("preparing");
+                Customer customer=new Customer(orderId,name,cusId,bgrQty,status);
+                boolean isAdded=customerCollection.addCustomer(customer);
                 if (isAdded) {
                     JOptionPane.showMessageDialog(this, "Added Success");
                     lblPOrder.setText(customerCollection.genOrderId());

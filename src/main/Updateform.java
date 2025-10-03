@@ -5,6 +5,7 @@
 package main;
 import CustomerPack.Customer;
 import CustomerPack.CustomerCollection;
+import javax.swing.JOptionPane;
 /**
  *
  * @author USER
@@ -98,6 +99,12 @@ private final CustomerCollection customerCollection;
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel4.setText("Order ID");
 
+        txtUOid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtUOid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUOidActionPerformed(evt);
+            }
+        });
         txtUOid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtUOidKeyReleased(evt);
@@ -113,25 +120,36 @@ private final CustomerCollection customerCollection;
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel6.setText("Name");
 
+        txtUoderqty.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtUoderqty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUoderqtyKeyReleased(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel7.setText("Order QTY");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel8.setText("Total");
+        jLabel8.setText("Total(LKR)");
 
         Uqbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PREPARING", "CANCELE", "DELIVERED" }));
+
+        lblCusId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblCusName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUoder, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUback, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -145,7 +163,7 @@ private final CustomerCollection customerCollection;
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Uqbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(554, 554, 554))
+                        .addGap(572, 572, 572))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -165,10 +183,12 @@ private final CustomerCollection customerCollection;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUoder, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUback, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +203,7 @@ private final CustomerCollection customerCollection;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Uqbox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCusId, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,7 +211,7 @@ private final CustomerCollection customerCollection;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCusName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUoderqty, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,11 +219,11 @@ private final CustomerCollection customerCollection;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUoder, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,7 +231,7 @@ private final CustomerCollection customerCollection;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +245,25 @@ private final CustomerCollection customerCollection;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUoderActionPerformed
+        String id=txtUOid.getText();
+        String name=lblCusName.getText();
+        String CusId=lblCusId.getText();
         
+        int Status=Uqbox.getSelectedIndex();
+        int Qty=Integer.parseInt(txtUoderqty.getText());
+        Customer customer = new Customer(id,name,CusId,Qty,Status);
+        boolean isUpdate=customerCollection.updateCustomer(customer);
+        if(isUpdate){
+            JOptionPane.showMessageDialog(this, "Updated.");
+            txtUOid.setText("");
+            Uqbox.setSelectedIndex(0);
+            lblCusId.setText("");
+            lblCusName.setText("");
+            txtUoderqty.setText("");
+            lblTotal.setText("0.0");
+        }else{
+            JOptionPane.showMessageDialog(this, "Update Fail.");
+        }
     }//GEN-LAST:event_btnUoderActionPerformed
 
     private void btnUbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbackActionPerformed
@@ -236,15 +274,45 @@ private final CustomerCollection customerCollection;
     private void txtUOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyReleased
         String id=txtUOid.getText();
         Customer customer=customerCollection.searchOrder(id);
-        lblCusId.setText(customer.getCusId());
-        lblCusName.setText(customer.getName());
-        txtUoderqty.setText(""+customer.getBgrQty());
-        lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
+        if(customer==null & id.length()==5){
+            JOptionPane.showMessageDialog(this, "Customer not found..");
+        }else if (customer.getOrderStatus()==0) {
+            Uqbox.setSelectedIndex(0);
+            lblCusId.setText(customer.getCusId());
+            lblCusName.setText(customer.getName());
+            txtUoderqty.setText(""+customer.getBgrQty());
+            lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
+        }else if (customer.getOrderStatus()==1) {
+            Uqbox.setSelectedIndex(1);
+            Uqbox.setEnabled(false);
+            lblCusId.setText(customer.getCusId());
+            lblCusName.setText(customer.getName());
+            txtUoderqty.setText(""+customer.getBgrQty());
+            txtUoderqty.setEditable(false);
+            lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
+        }else if (customer.getOrderStatus()==2) {
+            Uqbox.setSelectedIndex(2);
+            Uqbox.setEnabled(false);
+            lblCusId.setText(customer.getCusId());
+            lblCusName.setText(customer.getName());
+            txtUoderqty.setText(""+customer.getBgrQty());
+            txtUoderqty.setEditable(false);
+            lblTotal.setText(""+customer.getBgrQty()*customer.bgrPrice);
+        }
+        
     }//GEN-LAST:event_txtUOidKeyReleased
 
     private void txtUOidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUOidKeyTyped
+
+    private void txtUOidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUOidActionPerformed
+        
+    }//GEN-LAST:event_txtUOidActionPerformed
+
+    private void txtUoderqtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUoderqtyKeyReleased
+        lblTotal.setText(""+Integer.parseInt(txtUoderqty.getText())*Customer.bgrPrice);
+    }//GEN-LAST:event_txtUoderqtyKeyReleased
 
     /**
      * @param args the command line arguments
