@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import CustomerPack.Customer;
-import CustomerPack.CustomerCollection;
+import BurgerPack.Burger;
+import BurgerPack.BurgerCollection;
 import javax.swing.JOptionPane;
 
 
@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class Searchorder extends javax.swing.JFrame {
     
-    private final CustomerCollection customerCollection;
+    private final BurgerCollection customerCollection;
 
-    public Searchorder(CustomerCollection customerCollection) {
+    public Searchorder(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
@@ -210,7 +210,7 @@ public class Searchorder extends javax.swing.JFrame {
 
     private void txtSOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSOidKeyReleased
         String id=txtSOid.getText();
-        Customer customer=customerCollection.searchOrder(id);
+        Burger customer=customerCollection.searchOrder(id);
         if (txtSOid.getText().isEmpty() || txtSOid.getText().length()==4) {
             lblCusId.setText("");
 ;           lblCusname.setText("");
@@ -230,7 +230,7 @@ public class Searchorder extends javax.swing.JFrame {
             lblCusname.setText(customer.getName());
             lblCusId.setText(customer.getCusId());
             lblQty.setText(""+customer.getBgrQty());
-            lblTotal.setText(""+customer.getBgrQty()*Customer.bgrPrice);
+            lblTotal.setText(""+customer.getBgrQty()*Burger.bgrPrice);
             if (customer.getOrderStatus()==0) {
                 lblStatus.setText("PREPARING");
             }else if (customer.getOrderStatus()==1) {

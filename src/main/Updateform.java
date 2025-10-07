@@ -3,20 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import CustomerPack.Customer;
-import CustomerPack.CustomerCollection;
+import BurgerPack.Burger;
+import BurgerPack.BurgerCollection;
 import javax.swing.JOptionPane;
 /**
  *
  * @author USER
  */
 public class Updateform extends javax.swing.JFrame {
-private final CustomerCollection customerCollection;
-private Customer customer;
+private final BurgerCollection customerCollection;
+private Burger customer;
     /**
      * Creates new form Mainform
      */
-    public Updateform(CustomerCollection customerCollection) {
+    public Updateform(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
@@ -259,7 +259,7 @@ private Customer customer;
         } else {
             customer.setBgrQty(qty);
             customer.setOrderStatus(status);
-            if(status==Customer.CANCELED){
+            if(status==Burger.CANCELED){
                 customer.setBgrQty(0);
             }
             JOptionPane.showMessageDialog(this, "Order updated successfully...");
@@ -299,11 +299,11 @@ private Customer customer;
             return;
         }
 
-        if (this.customer.getOrderStatus() == Customer.CANCELED) {
+        if (this.customer.getOrderStatus() == Burger.CANCELED) {
             JOptionPane.showMessageDialog(this, "This oder is canceled");
             Uqbox.setEnabled(false);
             txtUoderqty.setEnabled(false);
-        } else if (this.customer.getOrderStatus() == Customer.DELIVERED) {
+        } else if (this.customer.getOrderStatus() == Burger.DELIVERED) {
             JOptionPane.showMessageDialog(this, "This oder is Deliverde");
             Uqbox.setEnabled(false);
             txtUoderqty.setEnabled(false);
@@ -325,7 +325,7 @@ private Customer customer;
     }//GEN-LAST:event_txtUOidActionPerformed
 
     private void txtUoderqtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUoderqtyKeyReleased
-        lblTotal.setText(""+Integer.parseInt(txtUoderqty.getText())*Customer.bgrPrice);
+        lblTotal.setText(""+Integer.parseInt(txtUoderqty.getText())*Burger.bgrPrice);
     }//GEN-LAST:event_txtUoderqtyKeyReleased
 
     private void UqboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UqboxActionPerformed

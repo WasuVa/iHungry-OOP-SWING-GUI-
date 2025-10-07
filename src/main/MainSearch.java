@@ -3,15 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import CustomerPack.CustomerCollection;
+import BurgerPack.BurgerCollection;
 
 public class MainSearch extends javax.swing.JFrame {
-    private final CustomerCollection customerCollection; 
+    private final BurgerCollection customerCollection; 
 
     /**
      * Creates new form Mainform
      */
-    public MainSearch(CustomerCollection customerCollection) {
+    public MainSearch(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;

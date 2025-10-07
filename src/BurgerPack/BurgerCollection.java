@@ -1,39 +1,39 @@
-package CustomerPack;
+package BurgerPack;
 
-public class CustomerCollection {
-    private Customer[] customerArray=new Customer[]{
-        new Customer("B0001","wasuda1","0123456789",10,0),
-        new Customer("B0002","wasuda2","0987654321",8,1),
-        new Customer("B0003","wasuda3","0918273645",15,2),
-        new Customer("B0004","wasuda1","0123456789",15,2),
-        new Customer("B0005","wasuda2","0987654321",5,1),
-        new Customer("B0006","wasuda2","0987654321",10,0)
+public class BurgerCollection {
+    private Burger[] customerArray=new Burger[]{
+        new Burger("B0001","wasuda1","0123456789",10,0),
+        new Burger("B0002","wasuda2","0987654321",8,1),
+        new Burger("B0003","wasuda3","0918273645",15,2),
+        new Burger("B0004","wasuda1","0123456789",15,2),
+        new Burger("B0005","wasuda2","0987654321",5,1),
+        new Burger("B0006","wasuda2","0987654321",10,0)
     };
     
     public void extendsCustomerArray() {
-        Customer[] tempCustomerArray = new Customer[customerArray.length + 1];
+        Burger[] tempCustomerArray = new Burger[customerArray.length + 1];
         for (int i = 0; i < customerArray.length; i++) {
             tempCustomerArray[i] = customerArray[i];
         }
         customerArray = tempCustomerArray;
     }
     
-    public Customer[] toArray() {
-        Customer[] tempCustomerArray = new Customer[customerArray.length];
+    public Burger[] toArray() {
+        Burger[] tempCustomerArray = new Burger[customerArray.length];
         for (int i = 0; i < customerArray.length; i++) {
             tempCustomerArray[i] = customerArray[i];
         }
         return tempCustomerArray;
     }
     
-    public boolean addCustomer(Customer customer) {
+    public boolean addCustomer(Burger customer) {
         extendsCustomerArray();
         customerArray[customerArray.length - 1] = customer;
         return true;
     }
 
-    public Customer searchCustomer(String cusId) {
-        for (Customer customer : customerArray) {
+    public Burger searchCustomer(String cusId) {
+        for (Burger customer : customerArray) {
             if (customer.getCusId().equalsIgnoreCase(cusId)) {
                 return customer;
             }
@@ -41,7 +41,7 @@ public class CustomerCollection {
         return null;
     }
 
-    public int indexOf(Customer customer) {
+    public int indexOf(Burger customer) {
         for (int i = 0; i < customerArray.length; i++) {
             if (customerArray[i].getCusId().equalsIgnoreCase(customer.getCusId())) {
                 return i;
@@ -50,8 +50,8 @@ public class CustomerCollection {
         return -1;
     }
     
-    public Customer searchOrder(String oderId){
-        for (Customer customer : customerArray) {
+    public Burger searchOrder(String oderId){
+        for (Burger customer : customerArray) {
             if (customer.getOrderId().equalsIgnoreCase(oderId)) {
                 return customer;
             }
@@ -59,7 +59,7 @@ public class CustomerCollection {
         return null;
     }
     
-    public boolean searchDuplicateCustomers(Customer[] customerArr,String cusId){
+    public boolean searchDuplicateCustomers(Burger[] customerArr,String cusId){
         for (int i = 0; i < customerArr.length; i++) {
             if (customerArr[i].getCusId().equalsIgnoreCase(cusId)) {
                 return true;
@@ -68,13 +68,13 @@ public class CustomerCollection {
         return false;
     }
     
-    public boolean updateCustomer(Customer customer){
+    public boolean updateCustomer(Burger customer){
         int index=indexOf(customer);
         customerArray[index]=customer;
         return true;
     }
 
-    public Customer[] getAllCustomers(){
+    public Burger[] getAllCustomers(){
         return customerArray;
     }
     

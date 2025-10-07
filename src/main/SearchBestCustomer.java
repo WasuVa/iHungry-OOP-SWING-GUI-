@@ -3,20 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import CustomerPack.Customer;
-import CustomerPack.CustomerCollection;
+import BurgerPack.Burger;
+import BurgerPack.BurgerCollection;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
  */
 public class SearchBestCustomer extends javax.swing.JFrame {
-    private final CustomerCollection customerCollection;
+    private final BurgerCollection customerCollection;
 
     /**
      * Creates new form Mainform
      */
-    public SearchBestCustomer(CustomerCollection customerCollection) {
+    public SearchBestCustomer(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
@@ -24,18 +24,18 @@ public class SearchBestCustomer extends javax.swing.JFrame {
     }
     
     public void loadBestCustomer(){
-        Customer[] customer=customerCollection.toArray();
-        Customer[] bestCustomers = new Customer[0];
+        Burger[] customer=customerCollection.toArray();
+        Burger[] bestCustomers = new Burger[0];
 
         for (int i = 0; i < customer.length; i++) {
             if (!customerCollection.searchDuplicateCustomers(bestCustomers, customer[i].getCusId())) {
-                Customer[] temp = new Customer[bestCustomers.length + 1];
+                Burger[] temp = new Burger[bestCustomers.length + 1];
                 for (int j = 0; j < bestCustomers.length; j++) {
                     temp[j] = bestCustomers[j];
                 }
                 bestCustomers = temp;
                 bestCustomers[bestCustomers.length - 1] = 
-                        new Customer(customer[i].getOrderId(), 
+                        new Burger(customer[i].getOrderId(), 
                                 customer[i].getName(), 
                                 customer[i].getCusId(), 
                                 customer[i].getBgrQty(), 
@@ -56,7 +56,7 @@ public class SearchBestCustomer extends javax.swing.JFrame {
         for (int i = 0; i < bestCustomers.length; i++) {
             for (int j = 0; j < bestCustomers.length - 1; j++) {
                 if (bestCustomers[j].getBgrQty()< bestCustomers[j + 1].getBgrQty()) {
-                    Customer temp = bestCustomers[j];
+                    Burger temp = bestCustomers[j];
                     bestCustomers[j] = bestCustomers[j + 1];
                     bestCustomers[j + 1] = temp;
                 }
@@ -65,8 +65,8 @@ public class SearchBestCustomer extends javax.swing.JFrame {
 
         DefaultTableModel dtm = (DefaultTableModel) tblSBcustomers.getModel();
         dtm.setRowCount(0);
-        for (Customer burger : bestCustomers) {
-            Object[] rowData = {burger.getCusId(), burger.getName(), burger.getBgrQty()*Customer.bgrPrice};
+        for (Burger burger : bestCustomers) {
+            Object[] rowData = {burger.getCusId(), burger.getName(), burger.getBgrQty()*Burger.bgrPrice};
             dtm.addRow(rowData);
         }
     }

@@ -4,8 +4,8 @@
  */
 package main;
 
-import CustomerPack.Customer;
-import CustomerPack.CustomerCollection;
+import BurgerPack.Burger;
+import BurgerPack.BurgerCollection;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class Placeorder extends javax.swing.JFrame {
     
-    private final CustomerCollection customerCollection; 
+    private final BurgerCollection customerCollection; 
  
 
-    public Placeorder(CustomerCollection customerCollection) {
+    public Placeorder(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
@@ -325,7 +325,7 @@ public class Placeorder extends javax.swing.JFrame {
         if (cusId.length()==10) {
             if(name.length()>0){
                 lblStatus.setText("preparing");
-                Customer customer=new Customer(orderId,name,cusId,bgrQty,status);
+                Burger customer=new Burger(orderId,name,cusId,bgrQty,status);
                 boolean isAdded=customerCollection.addCustomer(customer);
                 if (isAdded) {
                     JOptionPane.showMessageDialog(this, "Added Success");
@@ -386,7 +386,7 @@ public class Placeorder extends javax.swing.JFrame {
             txtBurgerqty.setText("1");
             return;
         }
-        lblTotal.setText("LKR "+(double)Customer.bgrPrice*Integer.parseInt(qty));
+        lblTotal.setText("LKR "+(double)Burger.bgrPrice*Integer.parseInt(qty));
     }//GEN-LAST:event_txtBurgerqtyKeyReleased
 
     private void btnqtyminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnqtyminKeyReleased
@@ -402,7 +402,7 @@ public class Placeorder extends javax.swing.JFrame {
         int minQty=Integer.parseInt(qty);
         if (minQty>=1) {
             txtBurgerqty.setText(""+(minQty-1));
-            lblTotal.setText("LKR "+(double)Customer.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
+            lblTotal.setText("LKR "+(double)Burger.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
             
         }else if (minQty==0) {
             lblTotal.setText("LKR 0.0");
@@ -414,7 +414,7 @@ public class Placeorder extends javax.swing.JFrame {
         int minQty=Integer.parseInt(qty);
         if (minQty>=0) {
             txtBurgerqty.setText(""+(minQty+1));
-            lblTotal.setText("LKR "+(double)Customer.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
+            lblTotal.setText("LKR "+(double)Burger.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
         }else if (qty.isEmpty()) {
             txtBurgerqty.setText("1");
         }

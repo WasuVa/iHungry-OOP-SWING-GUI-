@@ -1,6 +1,6 @@
-package CustomerPack;
+package BurgerPack;
 
-public class Customer {
+public class Burger {
     public static final int bgrPrice=500;
     private String orderId;
     private String name;
@@ -12,10 +12,10 @@ public class Customer {
     public static final int CANCELED = 1; 
     public static final int DELIVERED = 2;
 
-    public Customer() {
+    public Burger() {
     }
 
-    public Customer(String orderId, String name, String cusId, int bgrQty, int orderStatus) {
+    public Burger(String orderId, String name, String cusId, int bgrQty, int orderStatus) {
         this.orderId = orderId;
         this.name = name;
         this.cusId = cusId;

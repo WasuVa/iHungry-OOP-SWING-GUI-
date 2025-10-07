@@ -3,17 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import CustomerPack.CustomerCollection;
+import BurgerPack.BurgerCollection;
 /**
  *
  * @author USER
  */
 public class MainviewOrders extends javax.swing.JFrame {
-    private final CustomerCollection customerCollection;
+    private final BurgerCollection customerCollection;
     /**
      * Creates new form Mainform
      */
-    public MainviewOrders(CustomerCollection customerCollection) {
+    public MainviewOrders(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;

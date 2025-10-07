@@ -3,32 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import CustomerPack.Customer;
-import CustomerPack.CustomerCollection;
+import BurgerPack.Burger;
+import BurgerPack.BurgerCollection;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
  */
 public class ProcessingOrders extends javax.swing.JFrame {
-    private final CustomerCollection customerCollection;
+    private final BurgerCollection customerCollection;
     /**
      * Creates new form Mainform
      */
-    public ProcessingOrders(CustomerCollection customerCollection) {
+    public ProcessingOrders(BurgerCollection customerCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.customerCollection=customerCollection;
         loadPreparingData();
     }
     private void loadPreparingData(){
-        Customer[] customerArray=customerCollection.toArray();
+        Burger[] customerArray=customerCollection.toArray();
         int Status=0;
         DefaultTableModel dtm=(DefaultTableModel) tblPoders.getModel();
         dtm.setRowCount(0);
         for (int i = 0; i < customerArray.length; i++) {
             if (Status==(customerArray[i].getOrderStatus())) {
-                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Customer.bgrPrice};
+                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Burger.bgrPrice};
                 dtm.addRow(rowData);
             }
         }
