@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.BurgerCollection;
-import BurgerPack.Burger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -12,14 +10,14 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class SearchCustomer extends javax.swing.JFrame {
-    private final BurgerCollection customerCollection;
+    private final List list;
     /**
      * Creates new form Mainform
      */
-    public SearchCustomer(BurgerCollection customerCollection) {
+    public SearchCustomer(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list=list;
     }
 
     /**
@@ -201,7 +199,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnScbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScbackActionPerformed
-        new MainSearch(customerCollection).setVisible(true);
+        new MainSearch(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnScbackActionPerformed
 
@@ -210,28 +208,27 @@ public class SearchCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_txtScusIdActionPerformed
 
     private void txtScusIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtScusIdKeyReleased
-        String CusId=txtScusId.getText();
-        Burger order=customerCollection.searchCustomer(CusId);
-        if(!txtScusId.getText().isEmpty()){
-            if (order==null & CusId.length()==10) {
-                JOptionPane.showMessageDialog(this, "This customer ID not exists,Try again");
-                txtScusId.setText("");
+        String customerId = txtScusId.getText();
+
+        if (customerId.isEmpty()) {
+            lblName.setText("--");
+            return;
+        }
+
+        Burger[] burgers =list.toArray();
+        DefaultTableModel dtm = (DefaultTableModel) tblScdetails.getModel();
+        dtm.setRowCount(0);
+        boolean isFound = false;
+        for (int i = 0; i < burgers.length; i++) {
+            if (customerId.equals(burgers[i].getCustomerId())) {
+                lblName.setText(burgers[i].getCustomerName());
+                Object[] rowData = {burgers[i].getOrderId(), burgers[i].getOrderQty(), (double) burgers[i].getOrderQty() * Burger.bgrPrice};
+                dtm.addRow(rowData);
+                isFound = true;
             }
-            if (txtScusId.getText().length()==10) {
-                Burger[] customerArray=customerCollection.toArray();
-                DefaultTableModel dtm=(DefaultTableModel) tblScdetails.getModel();
-                dtm.setRowCount(0);
-                for (int i = 0; i < customerArray.length; i++) {
-                    if (CusId.equals(customerArray[i].getCusId())) {
-                        lblName.setText(customerArray[i].getName());
-                        Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getBgrQty(), (double) customerArray[i].getBgrQty()* Burger.bgrPrice};
-                        dtm.addRow(rowData);
-                    }
-                }
-            }else if (txtScusId.getText()==null) {
-                JOptionPane.showMessageDialog(this, "This customer ID not exists,Try again");
-                lblName.setText("");
-            }
+        }
+        if (!isFound) {
+            lblName.setText("--");
         }
     }//GEN-LAST:event_txtScusIdKeyReleased
 

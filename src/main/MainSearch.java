@@ -3,18 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.BurgerCollection;
 
 public class MainSearch extends javax.swing.JFrame {
-    private final BurgerCollection customerCollection; 
-
-    /**
-     * Creates new form Mainform
-     */
-    public MainSearch(BurgerCollection customerCollection) {
+    private final List list; 
+    private Burger burgerAr;
+    public MainSearch(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list=list;
+        this.burgerAr=burgerAr;
         
     }
 
@@ -175,22 +172,22 @@ public class MainSearch extends javax.swing.JFrame {
 
     private void btnSPbestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPbestActionPerformed
         this.dispose();
-        new SearchBestCustomer(customerCollection).setVisible(true);
+        new SearchBestCustomer(list).setVisible(true);
     }//GEN-LAST:event_btnSPbestActionPerformed
 
     private void btnSPbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPbackActionPerformed
         this.dispose();
-        new Mainform(customerCollection).setVisible(true);
+        new Mainform(list).setVisible(true);
     }//GEN-LAST:event_btnSPbackActionPerformed
 
     private void btnSPcdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPcdetailsActionPerformed
         this.dispose();
-        new SearchCustomer(customerCollection).setVisible(true);
+        new SearchCustomer(list).setVisible(true);
     }//GEN-LAST:event_btnSPcdetailsActionPerformed
 
     private void btnSPodetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPodetailsActionPerformed
         this.dispose();
-        new Searchorder(customerCollection).setVisible(true);
+        new Searchorder(list).setVisible(true);
     }//GEN-LAST:event_btnSPodetailsActionPerformed
 
 
@@ -206,4 +203,6 @@ public class MainSearch extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+
 }

@@ -3,32 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.BurgerCollection;
-import BurgerPack.Burger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
  */
 public class DeliveredOrders extends javax.swing.JFrame {
-private final BurgerCollection customerCollection;
+private final List list;
     /**
      * Creates new form Mainform
      */
-    public DeliveredOrders(BurgerCollection customerCollection) {
+    public DeliveredOrders(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list=list;
         loadDeliveredData();
     }
     private void loadDeliveredData(){
-        Burger[] customerArray=customerCollection.toArray();
+        Burger[] customerArray=list.toArray();
         int Status=2;
         DefaultTableModel dtm=(DefaultTableModel) tblDoders.getModel();
         dtm.setRowCount(0);
         for (int i = 0; i < customerArray.length; i++) {
             if (Status==(customerArray[i].getOrderStatus())) {
-                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Burger.bgrPrice};
+                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCustomerId(),customerArray[i].getCustomerName(),customerArray[i].getOrderQty(),(double) customerArray[i].getOrderQty()* Burger.bgrPrice};
                 dtm.addRow(rowData);
             }
         }
@@ -141,7 +139,7 @@ private final BurgerCollection customerCollection;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDelibackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelibackActionPerformed
-        new MainviewOrders(customerCollection).setVisible(true);
+        new MainviewOrders(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnDelibackActionPerformed
 

@@ -4,8 +4,10 @@
  */
 package main;
 
-import BurgerPack.Burger;
-import BurgerPack.BurgerCollection;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,15 +15,15 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class Placeorder extends javax.swing.JFrame {
-    
-    private final BurgerCollection customerCollection; 
+   
+    private List list;
  
 
-    public Placeorder(BurgerCollection customerCollection) {
+    public Placeorder(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
-        lblPOrder.setText(this.customerCollection.genOrderId());
+        this.list=list;
+        lblPOrder.setText(genOrderId());
         txtCusId.setText("0");
     }
 
@@ -316,6 +318,27 @@ public class Placeorder extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCusIdActionPerformed
 
+    public String genOrderId() {
+       int lastOrderIdNum=1;
+       
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("Burger.txt"));
+            String line = br.readLine();
+            if (line!=null) {
+                lastOrderIdNum=Integer.parseInt(line.substring(1, 5));   
+            }else if (line==null) {
+                return String.format("B0001");
+            }
+            while(line!=null){
+                 line=br.readLine();
+                 lastOrderIdNum++;
+             }
+        }catch(IOException ex){
+            
+        }
+        return String.format("B%04d", lastOrderIdNum);
+    }
+    
     private void btnPlaceoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceoderActionPerformed
         String orderId=lblPOrder.getText();
         String cusId=txtCusId.getText();
@@ -325,11 +348,20 @@ public class Placeorder extends javax.swing.JFrame {
         if (cusId.length()==10) {
             if(name.length()>0){
                 lblStatus.setText("preparing");
-                Burger customer=new Burger(orderId,name,cusId,bgrQty,status);
-                boolean isAdded=customerCollection.addCustomer(customer);
-                if (isAdded) {
+                int res = JOptionPane.showConfirmDialog(this, "Do you want to add ? ", "New Burger", JOptionPane.YES_NO_OPTION);
+                if (res == JOptionPane.YES_OPTION) {
+                    try {
+                        try (FileWriter fw = new FileWriter("Burger.txt", true)) {
+                            Burger burger=new Burger(orderId, cusId, name, bgrQty, status);
+                            fw.write(orderId + "," + cusId + "," + name + "," + bgrQty + "," + status + "\n");
+                        }
+                        
+                    } catch (IOException ex) {
+                        
+                    }
                     JOptionPane.showMessageDialog(this, "Added Success");
-                    lblPOrder.setText(customerCollection.genOrderId());
+                    
+                    lblPOrder.setText(genOrderId());
                     txtCusId.setText("0");
                     txtCusname.setText("");
                     txtBurgerqty.setText("1");
@@ -345,23 +377,25 @@ public class Placeorder extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Customer Name is incorrect,Please inpute correct name");
                 txtCusId.setText("0");
                 txtCusname.setText("");
-                txtBurgerqty.setText("");
+                txtBurgerqty.setText("1");
+                lblTotal.setText("LKR 500.0");
             }
         }else{
             JOptionPane.showMessageDialog(this, "Customer ID is incorrect,Please inpute correct ID");
             txtCusId.setText("0");
             txtCusname.setText("");
-            txtBurgerqty.setText("");       
-        }  
+            txtBurgerqty.setText("1");   
+            lblTotal.setText("LKR 500.0");
+        }
     }//GEN-LAST:event_btnPlaceoderActionPerformed
 
     private void btnPbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPbackActionPerformed
         dispose();
-        new Mainform(customerCollection).setVisible(true);
+        new Mainform(list).setVisible(true);
     }//GEN-LAST:event_btnPbackActionPerformed
 
     private void txtCusnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCusnameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtCusnameActionPerformed
 
     private void btnPcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcancelActionPerformed
@@ -400,12 +434,9 @@ public class Placeorder extends javax.swing.JFrame {
     private void btnqtyminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnqtyminMouseClicked
         String qty=txtBurgerqty.getText();
         int minQty=Integer.parseInt(qty);
-        if (minQty>=1) {
+        if (minQty>1) {
             txtBurgerqty.setText(""+(minQty-1));
             lblTotal.setText("LKR "+(double)Burger.bgrPrice*Integer.parseInt(txtBurgerqty.getText()));
-            
-        }else if (minQty==0) {
-            lblTotal.setText("LKR 0.0");
         }
     }//GEN-LAST:event_btnqtyminMouseClicked
 
@@ -419,10 +450,6 @@ public class Placeorder extends javax.swing.JFrame {
             txtBurgerqty.setText("1");
         }
     }//GEN-LAST:event_btnqtnplusMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPback;

@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.Burger;
-import BurgerPack.BurgerCollection;
 import javax.swing.JOptionPane;
 
 
@@ -14,12 +12,12 @@ import javax.swing.JOptionPane;
  */
 public class Searchorder extends javax.swing.JFrame {
     
-    private final BurgerCollection customerCollection;
+    private final List list;
 
-    public Searchorder(BurgerCollection customerCollection) {
+    public Searchorder(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list=list;
     }
 
     /**
@@ -204,13 +202,12 @@ public class Searchorder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSbackActionPerformed
-        new MainSearch(customerCollection).setVisible(true);
+        new MainSearch(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSbackActionPerformed
 
     private void txtSOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSOidKeyReleased
         String id=txtSOid.getText();
-        Burger customer=customerCollection.searchOrder(id);
         if (txtSOid.getText().isEmpty() || txtSOid.getText().length()==4) {
             lblCusId.setText("");
 ;           lblCusname.setText("");
@@ -218,7 +215,8 @@ public class Searchorder extends javax.swing.JFrame {
             lblStatus.setText("");
             lblTotal.setText("");
         }
-        if(id.length()==5 & customer==null){
+       Burger burger=list.searchOrder(id);
+        if(id.length()==5 & burger==null){
             JOptionPane.showMessageDialog(this, "This Oder is not exists,Try again");
             txtSOid.setText("");
             lblCusId.setText("");
@@ -226,16 +224,16 @@ public class Searchorder extends javax.swing.JFrame {
             lblQty.setText("");
             lblStatus.setText("");
             lblTotal.setText("");
-        }else{
-            lblCusname.setText(customer.getName());
-            lblCusId.setText(customer.getCusId());
-            lblQty.setText(""+customer.getBgrQty());
-            lblTotal.setText(""+customer.getBgrQty()*Burger.bgrPrice);
-            if (customer.getOrderStatus()==0) {
+        }else if(txtSOid.getText().length()==5){
+            lblCusname.setText(burger.getCustomerName());
+            lblCusId.setText(burger.getCustomerId());
+            lblQty.setText(""+burger.getOrderQty());
+            lblTotal.setText(""+burger.getOrderQty()*Burger.bgrPrice);
+            if (burger.getOrderStatus()==0) {
                 lblStatus.setText("PREPARING");
-            }else if (customer.getOrderStatus()==1) {
+            }else if (burger.getOrderStatus()==1) {
                 lblStatus.setText("CANCELED");
-            }else if (customer.getOrderStatus()==2) {
+            }else if (burger.getOrderStatus()==2) {
                 lblStatus.setText("DELIVERED");
             }
         }

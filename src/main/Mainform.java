@@ -1,15 +1,43 @@
 package main;
 
-import BurgerPack.BurgerCollection;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import main.Burger;
+import main.List;
+import main.Placeorder;
+import main.MainSearch;
+import main.Updateform;
 
 
 public class Mainform extends javax.swing.JFrame {
-    private  BurgerCollection customerCollection;
-    public Mainform(BurgerCollection customerCollection) {
+    private List list;
+    public Mainform(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list = list;
+    }
+
+    public void loadDataToList() {
+        try (FileReader fileReader = new FileReader("Burger.txt"); BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] rowData = line.split(",");
+                Burger burger = new Burger(
+                        rowData[0],
+                        rowData[1],
+                        rowData[2],
+                        Integer.parseInt(rowData[3]),
+                        Integer.parseInt(rowData[4])
+                );
+                list.addBurger(burger);
+            }
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -152,7 +180,7 @@ public class Mainform extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        new MainSearch(customerCollection).setVisible(true);
+        new MainSearch(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -161,25 +189,25 @@ public class Mainform extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnUpdateorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateorderActionPerformed
-        new Updateform(customerCollection).setVisible(true);
+        new Updateform(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnUpdateorderActionPerformed
 
     private void btnVordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVordersActionPerformed
-        new MainviewOrders(customerCollection).setVisible(true);
+        new MainviewOrders(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVordersActionPerformed
 
     private void btnPorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorderActionPerformed
-        new Placeorder(customerCollection).setVisible(true);
+        new Placeorder(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPorderActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
-        BurgerCollection customerCollection =new BurgerCollection();
-        new Mainform(customerCollection).setVisible(true);
-
+        List list = new List(100, 0.5);
+        list.loadDataFromFile("Burger.txt");
+        new Mainform(list).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,23 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.Burger;
-import BurgerPack.BurgerCollection;
 import javax.swing.JOptionPane;
 /**
  *
  * @author USER
  */
 public class Updateform extends javax.swing.JFrame {
-private final BurgerCollection customerCollection;
+private final List list;
 private Burger customer;
     /**
      * Creates new form Mainform
      */
-    public Updateform(BurgerCollection customerCollection) {
+    public Updateform(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list=list;
     }
 
     /**
@@ -134,7 +132,7 @@ private Burger customer;
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel8.setText("Total(LKR)");
 
-        Uqbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PREPARING", "CANCELE", "DELIVERED" }));
+        Uqbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PREPARING", "DELIVERED", "CANCELE" }));
         Uqbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UqboxActionPerformed(evt);
@@ -257,63 +255,58 @@ private Burger customer;
         if (qty < 1) {
             JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
         } else {
-            customer.setBgrQty(qty);
+            customer.setOrderQty(qty);
             customer.setOrderStatus(status);
-            if(status==Burger.CANCELED){
-                customer.setBgrQty(0);
+            if(status==Burger.CANCEL){
+                customer.setOrderQty(0);
             }
             JOptionPane.showMessageDialog(this, "Order updated successfully...");
         }
     }//GEN-LAST:event_btnUoderActionPerformed
 
     private void btnUbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbackActionPerformed
-       new Mainform(customerCollection).setVisible(true);
+       new Mainform(list).setVisible(true);
        dispose();
     }//GEN-LAST:event_btnUbackActionPerformed
 
     private void txtUOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyReleased
-
-        String orderId = txtUOid.getText();
+    String orderId = txtUOid.getText();
 
         if (orderId.isEmpty()) {
             Uqbox.setSelectedIndex(0);
-            lblCusId.setText("");
+            txtUOid.setText("");
             lblCusName.setText("");
             txtUoderqty.setText("");
-            lblTotal.setText("");
+            lblTotal.setText("LKR --");
             return;
         }
 
-        this.customer = customerCollection.searchOrder(orderId);
+        this.customer = list.searchOrder(orderId);
 
-        
-        
         if (this.customer == null) {
             Uqbox.setSelectedIndex(0);
-            lblCusId.setText("");
+            txtUOid.setText("");
             lblCusName.setText("");
             txtUoderqty.setText("");
-            lblTotal.setText("");
+            lblTotal.setText("LKR --");
             Uqbox.setEnabled(true);
             txtUoderqty.setEnabled(true);
             return;
         }
 
-        if (this.customer.getOrderStatus() == Burger.CANCELED) {
-            JOptionPane.showMessageDialog(this, "This oder is canceled");
+        if (this.customer.getOrderStatus() == Burger.CANCEL) {
             Uqbox.setEnabled(false);
             txtUoderqty.setEnabled(false);
         } else if (this.customer.getOrderStatus() == Burger.DELIVERED) {
-            JOptionPane.showMessageDialog(this, "This oder is Deliverde");
             Uqbox.setEnabled(false);
             txtUoderqty.setEnabled(false);
         }
 
         Uqbox.setSelectedIndex(customer.getOrderStatus());
-        lblCusId.setText(customer.getCusId());
-        lblCusName.setText(customer.getName());
-        txtUoderqty.setText(String.valueOf(customer.getBgrQty()));
-        lblTotal.setText("LKR " + String.valueOf((double) customer.getBgrQty()* customer.bgrPrice));
+        txtUOid.setText(customer.getCustomerId());
+        lblCusName.setText(customer.getCustomerName());
+        txtUoderqty.setText(String.valueOf(customer.getOrderQty()));
+        lblTotal.setText("LKR " + String.valueOf((double) customer.getOrderQty() * Burger.bgrPrice));
     }//GEN-LAST:event_txtUOidKeyReleased
 
     private void txtUOidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyTyped
@@ -325,7 +318,15 @@ private Burger customer;
     }//GEN-LAST:event_txtUOidActionPerformed
 
     private void txtUoderqtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUoderqtyKeyReleased
-        lblTotal.setText(""+Integer.parseInt(txtUoderqty.getText())*Burger.bgrPrice);
+                String qty = txtUoderqty.getText();
+
+        if (qty.isEmpty() || qty.equals("0")) {
+            lblTotal.setText("LKR 500.0");
+            txtUoderqty.setText("1");
+            return;
+        }
+
+        lblTotal.setText("LKR " + (double) Burger.bgrPrice * Integer.parseInt(qty));
     }//GEN-LAST:event_txtUoderqtyKeyReleased
 
     private void UqboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UqboxActionPerformed

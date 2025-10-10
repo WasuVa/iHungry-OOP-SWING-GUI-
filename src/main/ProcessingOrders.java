@@ -3,32 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.Burger;
-import BurgerPack.BurgerCollection;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
  */
 public class ProcessingOrders extends javax.swing.JFrame {
-    private final BurgerCollection customerCollection;
+    private final List list;
     /**
      * Creates new form Mainform
      */
-    public ProcessingOrders(BurgerCollection customerCollection) {
+    public ProcessingOrders(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection;
+        this.list=list;
         loadPreparingData();
     }
     private void loadPreparingData(){
-        Burger[] customerArray=customerCollection.toArray();
+        Burger[] customerArray=list.toArray();
         int Status=0;
         DefaultTableModel dtm=(DefaultTableModel) tblPoders.getModel();
         dtm.setRowCount(0);
         for (int i = 0; i < customerArray.length; i++) {
             if (Status==(customerArray[i].getOrderStatus())) {
-                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Burger.bgrPrice};
+                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCustomerId(),customerArray[i].getCustomerName(),customerArray[i].getOrderQty(),(double) customerArray[i].getOrderQty()* Burger.bgrPrice};
                 dtm.addRow(rowData);
             }
         }
@@ -140,7 +138,7 @@ public class ProcessingOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbackActionPerformed
-        new MainviewOrders(customerCollection).setVisible(true);
+        new MainviewOrders(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnProbackActionPerformed
 

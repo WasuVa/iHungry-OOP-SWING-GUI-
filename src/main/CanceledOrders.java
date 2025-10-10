@@ -3,32 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import BurgerPack.Burger;
-import BurgerPack.BurgerCollection;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
  */
 public class CanceledOrders extends javax.swing.JFrame {
-private final BurgerCollection customerCollection;
-    /**
-     * Creates new form Mainform
-     */
-    public CanceledOrders(BurgerCollection customerCollection1) {
+private List list;
+
+    public CanceledOrders(List list) {
         initComponents();
         setLocationRelativeTo(null);
-        this.customerCollection=customerCollection1;
-        loadCanceledData();
+        this.list=list;
+        loadCancelledOrders();
     }
-    private void loadCanceledData(){
-        Burger[] customerArray=customerCollection.toArray();
-        int Status=1;
+    
+    private void loadCancelledOrders(){
+        Burger[] burgers=list.toArray();
         DefaultTableModel dtm=(DefaultTableModel) tblCoders.getModel();
         dtm.setRowCount(0);
-        for (int i = 0; i < customerArray.length; i++) {
-            if (Status==(customerArray[i].getOrderStatus())) {
-                Object[] rowData = {customerArray[i].getOrderId(), customerArray[i].getCusId(),customerArray[i].getName(),customerArray[i].getBgrQty() ,(double) customerArray[i].getBgrQty()* Burger.bgrPrice};
+        for(int i=0; i<burgers.length; i++){
+            if(burgers[i].getOrderStatus()==Burger.CANCEL){
+                Object[] rowData={burgers[i].getOrderId(),
+                    burgers[i].getCustomerId(),
+                    burgers[i].getCustomerName(),
+                    burgers[i].getOrderQty(),
+                    (double)burgers[i].getOrderQty()*Burger.bgrPrice};
                 dtm.addRow(rowData);
             }
         }
@@ -140,7 +140,7 @@ private final BurgerCollection customerCollection;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCanbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanbackActionPerformed
-        new MainviewOrders(customerCollection).setVisible(true);
+        new MainviewOrders(list).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCanbackActionPerformed
 
