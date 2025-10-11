@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Updateform extends javax.swing.JFrame {
 private final List list;
-private Burger customer;
+private Burger burger;
     /**
      * Creates new form Mainform
      */
@@ -253,13 +253,25 @@ private Burger customer;
         int status = Uqbox.getSelectedIndex();
 
         if (qty < 1) {
-            JOptionPane.showMessageDialog(this, "Please add at least one quantity...");
-        } else {
-            customer.setOrderQty(qty);
-            customer.setOrderStatus(status);
-            if(status==Burger.CANCEL){
-                customer.setOrderQty(0);
+            if (Uqbox.getSelectedIndex()==2) {
+                JOptionPane.showMessageDialog(this, "This oder is canceled...");
             }
+            if (Uqbox.getSelectedIndex()==1) {
+                JOptionPane.showMessageDialog(this, "This oder is Delivered...");
+            }
+        } else {
+            burger.setOrderQty(qty);
+            burger.setOrderStatus(status);
+            if(status==Burger.CANCEL){
+                burger.setOrderQty(0);
+            }
+            txtUOid.setText("");
+            lblCusName.setText("");
+            Uqbox.setSelectedIndex(0);
+            lblCusId.setText("");
+            txtUoderqty.setText("");
+            lblTotal.setText("");
+            txtUoderqty.setText("1");
             JOptionPane.showMessageDialog(this, "Order updated successfully...");
         }
     }//GEN-LAST:event_btnUoderActionPerformed
@@ -271,42 +283,49 @@ private Burger customer;
 
     private void txtUOidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyReleased
     String orderId = txtUOid.getText();
-
-        if (orderId.isEmpty()) {
+    
+        if (orderId.length()<5) {
             Uqbox.setSelectedIndex(0);
-            txtUOid.setText("");
             lblCusName.setText("");
+            lblCusId.setText("");
             txtUoderqty.setText("");
-            lblTotal.setText("LKR --");
-            return;
-        }
-
-        this.customer = list.searchOrder(orderId);
-
-        if (this.customer == null) {
-            Uqbox.setSelectedIndex(0);
-            txtUOid.setText("");
-            lblCusName.setText("");
-            txtUoderqty.setText("");
-            lblTotal.setText("LKR --");
-            Uqbox.setEnabled(true);
-            txtUoderqty.setEnabled(true);
-            return;
-        }
-
-        if (this.customer.getOrderStatus() == Burger.CANCEL) {
-            Uqbox.setEnabled(false);
-            txtUoderqty.setEnabled(false);
-        } else if (this.customer.getOrderStatus() == Burger.DELIVERED) {
+            lblTotal.setText("");
             Uqbox.setEnabled(false);
             txtUoderqty.setEnabled(false);
         }
+        if(txtUOid.getText().length()==5){
+            this.burger = list.searchOrder(orderId);
+            
+            if (this.burger == null) {
+                Uqbox.setSelectedIndex(0);
+                JOptionPane.showMessageDialog(this, "Order ID is not added yet...");
+                lblCusName.setText("");
+                lblCusId.setText("");
+                txtUoderqty.setText("");
+                lblTotal.setText("");
+                Uqbox.setEnabled(true);
+                txtUoderqty.setEnabled(true);
+                return;
+            }else{
+                Uqbox.setSelectedIndex(burger.getOrderStatus());
+                lblCusName.setText(burger.getCustomerName());
+                lblCusId.setText(burger.getCustomerId());
+                txtUoderqty.setText(String.valueOf(burger.getOrderQty()));
+                lblTotal.setText("LKR " + String.valueOf((double) burger.getOrderQty() * Burger.bgrPrice));
+                Uqbox.setEnabled(true);
+                txtUoderqty.setEnabled(true);
+            }   
+        }
+        
 
-        Uqbox.setSelectedIndex(customer.getOrderStatus());
-        txtUOid.setText(customer.getCustomerId());
-        lblCusName.setText(customer.getCustomerName());
-        txtUoderqty.setText(String.valueOf(customer.getOrderQty()));
-        lblTotal.setText("LKR " + String.valueOf((double) customer.getOrderQty() * Burger.bgrPrice));
+        if (this.burger.getOrderStatus() == Burger.CANCEL) {
+            Uqbox.setEnabled(false);
+            txtUoderqty.setEnabled(false);
+        } else if (this.burger.getOrderStatus() == Burger.DELIVERED) {
+            Uqbox.setEnabled(false);
+            txtUoderqty.setEnabled(false);
+        }
+
     }//GEN-LAST:event_txtUOidKeyReleased
 
     private void txtUOidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUOidKeyTyped
@@ -357,4 +376,4 @@ private Burger customer;
     private javax.swing.JTextField txtUOid;
     private javax.swing.JTextField txtUoderqty;
     // End of variables declaration//GEN-END:variables
-}
+
